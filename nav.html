@@ -4,59 +4,52 @@
 		<link rel="shortcut icon" href="C:\Users\apoor\Desktop\PCA\mait.png">
 		<title>Haveli</title>
 		<link rel="shortcut icon" href="image/mait.png">
+		<link rel="stylesheet" href="css/nav.css">
 		<style type="text/css">
-			#pagewrapper{
-				width : 1000px;
-				margin-left: auto;
+			.slideshow{
+				position: relative;
+				width: 1000px;
 				margin-right: auto;
+				margin-left: auto;
+				height : 500px;
 			}
-			#nav{
-				background-color: #202020;
-				overflow: hidden;
-			}
-			.nav-link1{
-				float:left;
-				padding: 14px 16px;
-				text-align: center;
-				color: white;
-				text-decoration: none;
-			}
-			.nav-link1:hover{
-				background-color: #00A100;
-				color: black;
-			}
-			#acc-icon{
-				height:25px;
-				width: 25px;
-
-			}
-			#dropdown{
-				float:right;
-				margin-right: 10px;
-				margin-top: 10px;
-			}
-			.dropdown-content{
-				z-index: 1;
+			.button{
+				cursor: pointer;
 				position: absolute;
+				top: 50%;
+				height: 60px;
+				width: 35px;
+				background-color: transparent;
+				border: none;
+				z-index: 1;
+			}
+			
+			.right{
+				right: 0;
+			}
+			.slide-button{
+				margin-left: -10px;
+				height: 60px;
+				width: 35px;
+				opacity: 0.4;
+				transition: all 0.5s ease;
+			}
+			.button:hover .slide-button{
+				opacity: 1;
+			}
+			.group{
 				display: none;
-				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-				text-align: right;
 			}
-			.nav-link{
-				display: block;
-				color: black;
-				background-color: #EEEEEE;
-				padding: 14px 16px;
-				margin-left: -120px;
+			.image{
+				max-height: 500px;
+				width:100%;
 			}
-			#dropdown:hover .dropdown-content{
-				display: block;
-			}
-			#dropdown:hover .icon{
-				background-color: #00A100;
-			}
-			.nav-link:hover{
-				background-color: #00A100;
+			.caption{
+				position: absolute;
+				top:90%;
+				right: 50%;
+				color : grey;
+				font-size: 16px;
 			}
 		</style>
 	</head>
@@ -74,6 +67,56 @@
 					</div>
 				</div>
 			</div>
+
+
+			<div class="slideshow">	
+				<div class="group" id="g1">
+					<img class="image" src="image/1.jpg" alt="image1"/>
+					<span class="caption" id="c1">1/3</span>
+				</div>
+				<div class="group" id="g2">
+					<img class="image" src="image/account.png" alt="image2"/>
+					<span class="caption" id="c2">2/3</span>
+				</div>
+				<div class="group" id="g3">
+					<img class="image" src="image/mait.png" alt="image3"/>
+					<span class="caption" id="c3">3/3</span>
+				</div>
+
+				<script type="text/javascript">
+					var slide=1;
+					show(1);
+
+					function change(n){
+						show(slide+=n);
+					}
+
+					function show(n){
+						var i;
+						var group = document.getElementsByClassName("group");
+						if(n>group.length)
+							n=1;
+						else if(n<1)
+							n=group.length;
+
+						for(i=0;i<group.length;i++){
+							group[i].style.display="none";
+						}
+
+						group[n-1].style.display="block";
+					}
+
+				</script>
+
+				<button class="button left" onclick="change(-1)"><img class="slide-button" src="image/left.png"></button>
+
+				<button  class="button right" onclick="change(1)"><img class="slide-button" src="image/right.png"></button>
+
+
+
+
+			</div>
 		</div>
+
 	</body>
 </html>
